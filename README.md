@@ -8,6 +8,9 @@ Slack bot for PyCon JP Slack
 $ python3.10 -m venv env
 $ . env/bin/activate
 (env) $ pip install -r requirements.txt
+(env) $ cp example.env .env
+(env) $ vi .env
+(env) $ python app.py
 ```
 
 ## 📚References

@@ -34,7 +34,6 @@ def enable_misc_plugin(app: App) -> None:
     @app.message(compile(r"^\$ping$"))
     def ping(message: dict, say: Say) -> None:
         """return pong in response to ping"""
-        breakpoint()
         say("pong", thread_ts=message.get("thread_ts"))
 
     @app.message(compile(r"^\$random(\s+(active|help))?$"))

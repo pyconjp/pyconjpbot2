@@ -4,6 +4,15 @@ Slack bot for PyCon JP Slack
 
 ## ▶️ Commands
 
+### [greeting.py](/plugins/greeting.py)
+
+- あいさつを返す
+
+```
+takanory: おはよう
+pyconjpbot: @takanory おはようございます
+```
+
 ### [misc.py](/plugins/misc.py)
 
 - `$shuffle spam ham eggs`: 指定された単語をシャッフルした結果を返す

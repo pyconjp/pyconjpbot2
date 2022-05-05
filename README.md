@@ -4,9 +4,20 @@ Slack bot for PyCon JP Slack
 
 ## ▶️ Commands
 
+### [calc.py](/plugins/calc.py)
+
+- 数式を計算する / Calculate formulas
+
+```
+takanory: 1 + 1
+pyconjpbot: 2
+takanory: sqrt(2)
+pyconjpbot: 1.4142135623730951
+```
+
 ### [greeting.py](/plugins/greeting.py)
 
-- あいさつを返す
+- あいさつを返す / Return a greeting message
 
 ```
 takanory: おはよう

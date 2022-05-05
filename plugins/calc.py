@@ -1,5 +1,5 @@
 """
-Return a greeting message
+Calculate formulas
 """
 
 from re import compile
@@ -15,18 +15,18 @@ def enable_calc_plugin(app: App) -> None:
     @app.message(compile(r"^(([-+*/^%!(),.\d\s]|pi|e|sqrt|sin|cos|tan|log)+)$"))
     def calc(message: dict, say: Say) -> None:
         """
-        Compute a string like a expression and return the result
+        Calculate a string like a formula and return the result
         """
-        expression = message["text"]
-        expression = expression.replace(",", "")
+        formula = message["text"]
+        formula = formula.replace(",", "")
         # ignore single number
-        if NUM_PATTERN.match(expression):
+        if NUM_PATTERN.match(formula):
             return
 
         try:
-            result = sympify(expression)
+            result = sympify(formula)
         except SympifyError:
-            # ignore not an expression
+            # ignore not a formula
             return
 
         if result.is_Integer:

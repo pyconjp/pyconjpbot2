@@ -1,8 +1,8 @@
-# 🤖pyconjpbot2
+# 🤖 pyconjpbot2
 
 Slack bot for PyCon JP Slack
 
-## ▶️Commands
+## ▶️ Commands
 
 ### [misc.py](/plugins/misc.py)
 
@@ -12,7 +12,7 @@ Slack bot for PyCon JP Slack
 - `$random`: チャンネルにいるメンバーからランダムに一人を選ぶ
 - `$random active`: チャンネルにいるactiveなメンバーからランダムに一人を選ぶ
 
-## 🔧How to build
+## 🔧 How to build
 
 ```bash
 $ python3.10 -m venv env
@@ -23,7 +23,7 @@ $ . env/bin/activate
 (env) $ python app.py
 ```
 
-## ✨Lint, Mypy
+## ✨ Lint, Mypy
 
 * `tox -e lintcheck`: check black, isort and flake8
 * `tox -e mypy`: check mypy
@@ -50,7 +50,7 @@ ___________________________________ summary ____________________________________
   congratulations :)
 ```
 
-## 📚References
+## 📚 References
 
 * [Bolt for Python](https://slack.dev/bolt-python/tutorial/getting-started)
   * [slack_bolt API documentation](https://slack.dev/bolt-python/api-docs/slack_bolt/)

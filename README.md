@@ -32,6 +32,12 @@ pyconjpbot: @takanory おはようございます
 - `$random`: チャンネルにいるメンバーからランダムに一人を選ぶ
 - `$random active`: チャンネルにいるactiveなメンバーからランダムに一人を選ぶ
 
+### [wikipedia.py](/plugins/wikipedia.py)
+
+- Return Wikipedia page for specified keywords and language
+- `$wikipedia keywords`: Wikipediaで指定されたキーワードに関連するページを返す
+- `$wikipedia -en keywords`: Wikipediaで指定された言語(en等)のページを返す
+
 ## 🔧 How to build
 
 ```bash

@@ -34,6 +34,7 @@ def enable_misc_plugin(app: App) -> None:
     @app.message(compile(r"^\$ping$"))
     def ping(message: dict, say: Say) -> None:
         """return pong in response to ping"""
+        breakpoint()
         say("pong", thread_ts=message.get("thread_ts"))
 
     @app.message(compile(r"^\$random(\s+(active|help))?$"))
@@ -50,7 +51,14 @@ def enable_misc_plugin(app: App) -> None:
 
         subcommand = context["matches"][1]
         if subcommand == "help":
-            say("help")
+            say(
+                """
+- `$random`: チャンネルにいるメンバーからランダムに一人を選ぶ
+- `$random active`: チャンネルにいるactiveなメンバーからランダムに一人を選ぶ
+""",
+                mrkdwn=True,
+                thread_ts=message.get("thread_ts"),
+            )
             return
 
         # get channel members
@@ -58,8 +66,16 @@ def enable_misc_plugin(app: App) -> None:
         members = results["members"]
 
         # get member ids without bot user
-        user_ids = set(members) & set(get_user_ids(client))
-        # TODO: active subcommand support
-        user_id = random.choice(list(user_ids))
+        user_ids = list(set(members) & set(get_user_ids(client)))
+
+        if subcommand == "active":
+            random.shuffle(user_ids)
+            for user_id in user_ids:
+                presence = client.users_getPresence(user=user_id)
+                if presence["precense"] != "active":
+                    break
+        else:
+            user_id = random.choice(user_ids)
+
         name = get_display_name(client, user_id)
         say(f"{name} さん、君に決めた！", thread_ts=message.get("thread_ts"))

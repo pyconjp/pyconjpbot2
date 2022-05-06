@@ -11,7 +11,7 @@ from sympy import SympifyError, sympify
 NUM_PATTERN = compile(r"^\s*[-+]?[\d.,]+\s*$")
 
 
-def enable_calc_plugin(app: App) -> None:
+def enable_plugin(app: App) -> None:
     @app.message(compile(r"^(([-+*/^%!(),.\d\s]|pi|e|sqrt|sin|cos|tan|log)+)$"))
     def calc(message: dict, say: Say) -> None:
         """

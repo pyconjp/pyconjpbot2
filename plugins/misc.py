@@ -7,7 +7,7 @@ from slack_sdk import WebClient
 from .slack_utils import get_display_name, get_user_ids
 
 
-def enable_misc_plugin(app: App) -> None:
+def enable_plugin(app: App) -> None:
     @app.message(compile(r"^\$choice\s+(.*)"))
     def choice(message: dict, say: Say, context: BoltContext) -> None:
         """choice and return one of the specified keywords"""

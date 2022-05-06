@@ -13,7 +13,7 @@ def _send_greeting(message: dict, say: Say, greetings: tuple[str, ...]) -> None:
     say(f"<@{message['user']}> {greeting}", thread_ts=message.get("thread_ts"))
 
 
-def enable_greeting_plugin(app: App) -> None:
+def enable_plugin(app: App) -> None:
     @app.message(compile(r"おはよう|お早う"))
     def morning(message: dict, say: Say) -> None:
         """Return morning greeting"""

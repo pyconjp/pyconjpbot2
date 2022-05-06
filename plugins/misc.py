@@ -1,6 +1,7 @@
 import random
 from re import compile
 
+from git import Repo
 from slack_bolt import App, BoltContext, Say
 from slack_sdk import WebClient
 
@@ -35,6 +36,17 @@ def enable_plugin(app: App) -> None:
     def ping(message: dict, say: Say) -> None:
         """return pong in response to ping"""
         say("pong", thread_ts=message.get("thread_ts"))
+
+    @app.message(compile(r"^\$version$"))
+    def version(message: dict, say: Say) -> None:
+        """return version info"""
+        commit = Repo().head.object
+        url = f"https://github.com/pyconjp/pyconjpbot2/commit/{commit.hexsha}"
+        text = (
+            f"<{url}|{commit.summary} @{commit.hexsha[:6]}> "
+            f"- {commit.committer.name}({commit.committed_datetime.isoformat()})"
+        )
+        say(text, thread_ts=message.get("thread_ts"))
 
     @app.message(compile(r"^\$random(\s+(active|help))?$"))
     def random_command(

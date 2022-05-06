@@ -34,9 +34,10 @@ pyconjpbot: @takanory おはようございます
 
 ### [misc.py](/plugins/misc.py)
 
-- `$shuffle spam ham eggs`: 指定された単語をシャッフルした結果を返す
 - `$choice spam ham eggs`: 指定された単語から1つをランダムに選んで返す
+- `$shuffle spam ham eggs`: 指定された単語をシャッフルした結果を返す
 - `$ping`: 応答(pong)を返す
+- `$version`: バージョン情報を返す
 - `$random`: チャンネルにいるメンバーからランダムに一人を選ぶ
 - `$random active`: チャンネルにいるactiveなメンバーからランダムに一人を選ぶ
 

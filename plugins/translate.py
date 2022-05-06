@@ -29,7 +29,7 @@ p = compile(
 
 def enable_plugin(app: App) -> None:
     @app.message(compile(r"^\$translate(\s+-([-\w]+))?\s+(.*)"))
-    def wikipedia_command(message: dict, context: BoltContext, say: Say) -> None:
+    def translate_command(message: dict, context: BoltContext, say: Say) -> None:
         """Translate text"""
         lang = context["matches"][1]  # target language
         text = context["matches"][2]
@@ -39,7 +39,7 @@ def enable_plugin(app: App) -> None:
             return
 
         translator = deepl.Translator(os.environ["DEEPL_AUTH_KEY"])
-        languages = [language.code for language in translator.get_languages()]
+        languages = [language.code for language in translator.get_target_languages()]
 
         if text == "list":
             language_list = " ".join(f"`{language}`" for language in languages)
@@ -52,7 +52,12 @@ def enable_plugin(app: App) -> None:
             else:
                 lang = "JA"
         elif lang.upper() not in languages:
-            say(f"指定された言語 `{lang}` は存在しません", lang=lang)
+            say(f"指定された言語 `{lang}` は存在しません", thread_ts=message.get("thread_ts"))
 
-        result = translator.translate_text(text, lang=lang)
-        say(result.text, thread_ts=message.get("thread_ts"))
+        result = translator.translate_text(text, target_lang=lang)
+        usage = translator.get_usage()
+        if usage.character.limit_exceeded:
+            limit = "limit exceeded"
+        else:
+            limit = f"limit: {usage.character.count:,}/{usage.character.limit:,} chars"
+        say(f"{result.text} ({limit})", thread_ts=message.get("thread_ts"))

@@ -24,6 +24,14 @@ takanory: おはよう
 pyconjpbot: @takanory おはようございます
 ```
 
+### [translate.py](/plugins/trasnlate.py)
+
+- テキストを翻訳する / Translate text
+- `$translate python`: 指定した文字列を日本語に翻訳する
+- `$translate へび`: 指定した文字列を英語に翻訳する
+- `$translate -DE へび` : 指定した言語(DE等)に翻訳する
+- `$translate list`: 指定できる言語の一覧を返す
+
 ### [misc.py](/plugins/misc.py)
 
 - `$shuffle spam ham eggs`: 指定された単語をシャッフルした結果を返す

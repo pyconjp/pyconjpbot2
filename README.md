@@ -47,6 +47,10 @@ pyconjpbot: @takanory おはようございます
 - `$wikipedia keywords`: Wikipediaで指定されたキーワードに関連するページを返す
 - `$wikipedia -en keywords`: Wikipediaで指定された言語(en等)のページを返す
 
+### [reaction.py](/plugins/reaction.py)
+
+- 任意のキーワードでemojiリアクションを追加する / Add emoji reactions for any keywords
+
 ## 🔧 How to build
 
 ```bash

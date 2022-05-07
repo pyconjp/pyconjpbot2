@@ -1,6 +1,6 @@
 from slack_bolt import App
 
-from . import calc, greeting, misc, translate, wikipedia
+from . import calc, greeting, misc, reaction, translate, wikipedia
 
 
 def enable_plugins(app: App) -> None:
@@ -8,4 +8,5 @@ def enable_plugins(app: App) -> None:
     translate.enable_plugin(app)
     wikipedia.enable_plugin(app)
     greeting.enable_plugin(app)
+    reaction.enable_plugin(app)
     misc.enable_plugin(app)

@@ -32,6 +32,16 @@ pyconjpbot: @takanory おはようございます
 - `$translate -DE へび` : 指定した言語(DE等)に翻訳する
 - `$translate list`: 指定できる言語の一覧を返す
 
+### [plusplus.py](/plugins/plusplus.py)
+
+- 指定された名前の++をカウントする / Count ++ for a given name
+- `name1 name2++`: 指定された名前に +1 カウントする
+- `name1 name2--`: 指定された名前に -1 カウントする
+- `$plusplus search (keyword)`: 名前にkeywordを含む一覧を返す
+- `$plusplus delete (name)`: 指定されたnameのカウントを削除する(カウント10未満のみ)
+- `$plusplus rename (old) (new)`: カウントする名前をnewに変更する
+- `$plusplus merge (old) (new)`: 2つの名前のカウントをnewにまとめ、oldを削除する
+
 ### [misc.py](/plugins/misc.py)
 
 - `$choice spam ham eggs`: 指定された単語から1つをランダムに選んで返す
@@ -43,7 +53,7 @@ pyconjpbot: @takanory おはようございます
 
 ### [wikipedia.py](/plugins/wikipedia.py)
 
-- Return Wikipedia page for specified keywords and language
+- 指定されたキーワードに関連するWikipediaのページを返す / Return Wikipedia page for specified keywords and language
 - `$wikipedia keywords`: Wikipediaで指定されたキーワードに関連するページを返す
 - `$wikipedia -en keywords`: Wikipediaで指定された言語(en等)のページを返す
 

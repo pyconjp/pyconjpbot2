@@ -6,11 +6,7 @@ import os
 from re import compile
 
 import deepl
-from dotenv import load_dotenv
 from slack_bolt import App, BoltContext, Say
-
-# take environment variables from .env
-load_dotenv()
 
 HELP_TEXT = """
 - `$translate python`: 指定した文字列を日本語に翻訳する

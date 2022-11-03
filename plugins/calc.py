@@ -2,6 +2,7 @@
 Calculate formulas
 """
 
+import logging
 from re import compile
 
 from slack_bolt import App, Say
@@ -10,6 +11,8 @@ from sympy import SympifyError, sympify
 # single number pattern
 NUM_PATTERN = compile(r"^\s*[-+]?[\d.,]+\s*$")
 
+logger = logging.getLogger(__name__)
+
 
 def enable_plugin(app: App) -> None:
     @app.message(compile(r"^(([-+*/^%!(),.\d\s]|pi|e|sqrt|sin|cos|tan|log)+)$"))
@@ -17,6 +20,7 @@ def enable_plugin(app: App) -> None:
         """
         Calculate a string like a formula and return the result
         """
+        logger.info("excecute calc function")
         formula = message["text"]
         formula = formula.replace(",", "")
         # ignore single number

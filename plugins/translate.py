@@ -2,6 +2,7 @@
 Translate text
 """
 
+import logging
 import os
 from re import compile
 
@@ -22,11 +23,15 @@ p = compile(
     r"\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\U00020000-\U0002EBEF]"
 )
 
+logger = logging.getLogger(__name__)
+
 
 def enable_plugin(app: App) -> None:
     @app.message(compile(r"^\$translate(\s+-([-\w]+))?\s+(.*)"))
     def translate_command(message: dict, context: BoltContext, say: Say) -> None:
         """Translate text"""
+        logger.info("excecute translate_command function")
+
         lang = context["matches"][1]  # target language
         text = context["matches"][2]
 

@@ -1,3 +1,4 @@
+import logging
 import random
 from re import compile
 
@@ -7,11 +8,14 @@ from slack_sdk import WebClient
 
 from .slack_utils import get_display_name, get_user_ids
 
+logger = logging.getLogger(__name__)
+
 
 def enable_plugin(app: App) -> None:
     @app.message(compile(r"^\$choice\s+(.*)"))
     def choice(message: dict, say: Say, context: BoltContext) -> None:
         """choice and return one of the specified keywords"""
+        logger.info("execute choice function")
 
         choiced = ""
         words = context["matches"][0].split()
@@ -25,6 +29,7 @@ def enable_plugin(app: App) -> None:
     @app.message(compile(r"^\$shuffle\s+(.*)"))
     def shuffle(message: dict, say: Say, context: BoltContext) -> None:
         """Shuffle and return specified keywords"""
+        logger.info("execute shuffle function")
         words = context["matches"][0].split()
         if len(words) == 1:
             words = list(words[0])
@@ -35,11 +40,13 @@ def enable_plugin(app: App) -> None:
     @app.message(compile(r"^\$ping$"))
     def ping(message: dict, say: Say) -> None:
         """return pong in response to ping"""
+        logger.info("execute ping function")
         say("pong", thread_ts=message.get("thread_ts"))
 
     @app.message(compile(r"^\$version$"))
     def version(message: dict, say: Say) -> None:
         """return version info"""
+        logger.info("execute version function")
         commit = Repo().head.object
         url = f"https://github.com/pyconjp/pyconjpbot2/commit/{commit.hexsha}"
         text = (
@@ -60,6 +67,7 @@ def enable_plugin(app: App) -> None:
         - https://api.slack.com/methods/users.info
         """
 
+        logger.info("execute random function")
         subcommand = context["matches"][1]
         if subcommand == "help":
             say(

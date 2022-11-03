@@ -2,6 +2,7 @@
 Count ++ for a given name
 """
 
+import logging
 import random
 from re import compile
 
@@ -34,6 +35,8 @@ MINUS_MESSAGE = (
     "ドンマイ!",
     "(´・ω・｀)",
 )
+
+logger = logging.getLogger(__name__)
 
 
 def _update_count(name: str, is_plus: bool) -> int:
@@ -146,6 +149,7 @@ def enable_plugin(app: App) -> None:
         @takanory++
         takanory  --
         """
+        logger.info("executge multi_plusplus function")
         targets = context["matches"][0].split()
 
         plus_or_minus = context["matches"][1]
@@ -181,6 +185,7 @@ def enable_plugin(app: App) -> None:
 
         $plusplus search taka
         """
+        logger.info("executge plusplus_search function")
         keyword = context["matches"][0]
         pattern = f"%{keyword}%"
         pluses = Plusplus.select().where(Plusplus.name**pattern)
@@ -201,6 +206,7 @@ def enable_plugin(app: App) -> None:
 
         $plusplus delete takanory
         """
+        logger.info("executge plusplus_delete function")
         name = context["matches"][0]
         msg = _plusplus_delete(name)
         say(msg, thread_ts=message.get("thread_ts"))
@@ -225,6 +231,7 @@ def enable_plugin(app: App) -> None:
 
         $plusplus merge (old) (new)
         """
+        logger.info("executge plusplus_merge function")
 
         old = context["matches"][0]
         new = context["matches"][1]
@@ -236,4 +243,5 @@ def enable_plugin(app: App) -> None:
         """
         Send a help message
         """
+        logger.info("executge plusplus_help function")
         say(HELP_TEXT, thread_ts=message.get("thread_ts"))

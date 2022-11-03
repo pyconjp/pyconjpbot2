@@ -2,6 +2,7 @@
 jira
 """
 
+import logging
 import os
 from re import compile
 
@@ -23,6 +24,8 @@ jira = JIRA(CLEAN_JIRA_URL, basic_auth=jira_auth)
 projects = jira.projects()
 project_keys = [prj.key for prj in projects]
 issue_pattern = compile(rf"({'|'.join(project_keys)})-\d+")
+
+logger = logging.getLogger(__name__)
 
 
 def _create_issue_blocks(issue_id: str) -> list[SectionBlock]:
@@ -50,6 +53,7 @@ def enable_plugin(app: App) -> None:
     @app.message(issue_pattern)
     def jira_issue(message: dict, say: Say) -> None:
         """Return issue information"""
+        logger.info("execute jira_issue function")
         # find all issue id in message
         for m in issue_pattern.finditer(message["text"]):
             try:

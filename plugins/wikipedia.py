@@ -2,10 +2,13 @@
 Return Wikipedia page for specified keywords and language
 """
 
+import logging
 from re import compile
 
 import wikipedia
 from slack_bolt import App, BoltContext, Say
+
+logger = logging.getLogger(__name__)
 
 
 def _wikipedia_command(lang: str, query: str) -> str:
@@ -37,6 +40,8 @@ def enable_plugin(app: App) -> None:
     @app.message(compile(r"^\$wikipedia(\s+-(\w+))?\s+(.*)$"))
     def wikipedia_command(message: dict, context: BoltContext, say: Say) -> None:
         """Return Wikipedia page for specified keywords and language"""
+        logger.info("excecute wikipedia function")
+
         lang = context["matches"][1]
         query = context["matches"][2]
 

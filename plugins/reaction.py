@@ -2,6 +2,7 @@
 add emoji reacion
 """
 
+import logging
 from re import IGNORECASE, compile
 
 from slack_bolt import App
@@ -21,6 +22,8 @@ REACTION = {
     ("ラーメン", "ramen"): "ramen",
 }
 
+logger = logging.getLogger(__name__)
+
 
 def enable_plugin(app: App) -> None:
     keywords: list[str] = []
@@ -31,6 +34,8 @@ def enable_plugin(app: App) -> None:
     @app.message(compile(pattern, IGNORECASE))
     def reaction(message: dict, client: WebClient) -> None:
         """add emoji reaction"""
+        logger.info("excecute reaction function")
+
         text = message["text"].lower()
         for words, emoji in REACTION.items():
             for word in words:

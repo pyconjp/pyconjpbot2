@@ -1,9 +1,9 @@
-deepl==1.6.0
-GitPython==3.1.27
-jira==3.2.0
-peewee==3.14.10
-python-dotenv==0.20.0
-slack-bolt==1.13.1
-slack-sdk==3.16.1
-sympy==1.10.1
+deepl==1.11.0
+GitPython==3.1.29
+jira==3.4.1
+peewee==3.15.3
+python-dotenv==0.21.0
+slack-bolt==1.15.2
+slack-sdk==3.19.2
+sympy==1.11.1
 wikipedia==1.4.0

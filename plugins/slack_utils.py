@@ -45,6 +45,13 @@ def get_display_name(client: WebClient, user_id: str) -> str:
     return user_info["profile"]["display_name"]
 
 
+@cache
+def _list_usergroups(client: WebClient) -> dict:
+    results = client.usergroups_list()
+    groups = {g["handle"]: g for g in results["usergroups"]}
+    return groups
+
+
 def is_admin_user(client: WebClient, user_id: str) -> bool:
     """Returns the user is admin or not
 

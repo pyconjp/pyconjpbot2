@@ -46,10 +46,25 @@ def get_display_name(client: WebClient, user_id: str) -> str:
 
 
 @cache
-def _list_usergroups(client: WebClient) -> dict:
+def list_usergroups(client: WebClient) -> dict:
+    """Return list of usergroups
+    :client: `slack_sdk.web.WebClient` instance with a valid token
+    """
     results = client.usergroups_list()
     groups = {g["handle"]: g for g in results["usergroups"]}
     return groups
+
+
+@cache
+def list_user_usergroups(client: WebClient, group_name: str) -> list[str]:
+    """Returns list of users in usergroup
+
+    :client: `slack_sdk.web.WebClient` instance with a valid token
+    :param group_name: Name of usergroup
+    """
+    results = client.usergroups_users_list(usergroup=group_name)
+    users: list[str] = results["users"]  # type: ignore
+    return users
 
 
 def is_admin_user(client: WebClient, user_id: str) -> bool:

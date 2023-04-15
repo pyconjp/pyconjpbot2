@@ -45,6 +45,17 @@ def get_display_name(client: WebClient, user_id: str) -> str:
     return user_info["profile"]["display_name"]
 
 
+def get_user_id(client: WebClient, display_name: str) -> str | None:
+    """Returns the user_id for specific user
+
+    :client: `slack_sdk.web.WebClient` instance with a valid token
+    :param display_name: Display name
+    """
+    for id_, user in _get_users_dict(client).items():
+        if display_name == user["profile"]["display_name"]:
+            return id_
+
+
 @cache
 def list_usergroups(client: WebClient) -> dict:
     """Return list of usergroups

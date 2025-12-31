@@ -1,0 +1,36 @@
+"""
+pyconjpbot2 設定ファイルサンプル
+
+このファイルをコピーして local_settings.py を作成し、実際の値を設定してください。
+local_settings.py は .gitignore に含まれているため、リポジトリにコミットされません。
+
+使用方法:
+  1. cp local_settings.py.sample local_settingssettings.py
+  2. local_settings.py を編集して実際の値を設定
+"""
+
+# API Token for Bot integration
+# https://api.slack.com/apps/A0386KC9E2V/general: App-Level Tokens
+SLACK_APP_TOKEN: str = "<your-app-token>"
+# https://api.slack.com/apps/A0386KC9E2V/install-on-team
+SLACK_BOT_TOKEN: str = "<your-bot-token>"
+
+# ============================================================================
+# External API Configuration (オプション)
+# ============================================================================
+
+# DeepL Translation API
+# https://www.deepl.com/ja/pro-api
+DEEPL_API_KEY: str | None = None  # DeepL API Key（翻訳機能を使用する場合）
+
+
+# Settings for jira plugin
+JIRA_URL: str = "https://pyconjp.atlassian.net/"
+JIRA_PROJECTS: list[str] = ["ISSHA", "HBI", "HRS"]  # JIRA Project Keys
+JIRA_DEFAULT_PROJECT: str = "HRS"  # JIRA Default Project Key
+
+# see https://docs.google.com/spreadsheets/d/1YiqErBDdp5QWfTlfDmxc6Vi696b_NGFJKzuyM-v6PDM/edit#gid=0
+# https://id.atlassian.com/manage/api-tokens でトークンを生成
+JIRA_USERNAME: str | None = None
+JIRA_USER: str | None = None
+JIRA_PASS: str | None = None

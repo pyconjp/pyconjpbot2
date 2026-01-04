@@ -17,6 +17,7 @@ dependencies = [
     "google-api-python-client>=2.0.0",
     "jira>=3.0.0",
     "structlog>=25.4.0",
+    "tox>=4.32.0",
 ]
 
 [project.optional-dependencies]

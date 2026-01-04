@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Project Specific
+local_settings.py
+data/*.db
+data/*.db-shm
+data/*.db-wal
